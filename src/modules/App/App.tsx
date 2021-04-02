@@ -11,6 +11,7 @@ import 'antd/dist/antd.css';
 // Components
 import { LazyMap } from '../Map';
 import { LazyEarthImage } from './EarthImage';
+import { ErrorBoundary } from '../../shared/components/ErrorBoundary';
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: Infinity } },
@@ -22,15 +23,17 @@ export const App: FC = () => {
   return (
     <AppContextProvider>
       <QueryClientProvider client={queryClient}>
-        <Layout>
-          <Suspense fallback={<PageLoader />}>
-            <LayoutGrid>
-              {element}
-              <LazyMap />
-              <LazyEarthImage />
-            </LayoutGrid>
-          </Suspense>
-        </Layout>
+        <ErrorBoundary>
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <LayoutGrid>
+                {element}
+                <LazyMap />
+                <LazyEarthImage />
+              </LayoutGrid>
+            </Suspense>
+          </Layout>
+        </ErrorBoundary>
       </QueryClientProvider>
     </AppContextProvider>
   );
