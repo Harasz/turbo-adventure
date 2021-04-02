@@ -1,5 +1,5 @@
 import { lazy } from 'react';
 
 export const LazyMap = lazy(async () => ({
-  default: (await import('./Map' /* webpackChunkName: "Search" */)).Map,
+  default: (await import('./Map' /* webpackChunkName: "Map" */)).Map,
 }));

@@ -72,8 +72,6 @@ export const AppContextProvider: FC = ({ children }) => {
       dispatch({ type: ActionNames.PLACE_NAME, placeName: value }),
   };
 
-  console.log(state);
-
   return (
     <AppContext.Provider value={[state, handlers]}>
       {children}

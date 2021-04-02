@@ -55,7 +55,9 @@ const MapConsumer: FC = () => {
 
       const place = await fetchPlaceName(event.latlng.lng, event.latlng.lat);
       if (!place) return;
-      setPlaceName(place.features[0].place_name);
+      setPlaceName(
+        place.features.length > 0 ? place.features[0].place_name : 'Somewhere',
+      );
     },
   });
 

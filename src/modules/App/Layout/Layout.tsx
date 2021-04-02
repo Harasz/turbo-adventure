@@ -8,3 +8,4 @@ interface Props {
 export const Layout: FC<Props> = ({ children }) => {
   return <Wrapper>{children}</Wrapper>;
 };
+export { LayoutGrid } from './components';
