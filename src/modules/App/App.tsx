@@ -1,15 +1,26 @@
 import React, { FC, Suspense } from 'react';
 import { useRoutes } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Layout } from './Layout';
 import { routesComponents } from './routes';
+import { AppContextProvider } from './AppContext';
 import 'normalize.css';
+import 'antd/dist/antd.css';
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { staleTime: Infinity } },
+});
 
 export const App: FC = () => {
   const element = useRoutes(routesComponents);
 
   return (
-    <Layout>
-      <Suspense fallback="Loading...">{element}</Suspense>
-    </Layout>
+    <AppContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <Layout>
+          <Suspense fallback="Loading...">{element}</Suspense>
+        </Layout>
+      </QueryClientProvider>
+    </AppContextProvider>
   );
 };

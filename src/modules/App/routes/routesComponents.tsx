@@ -1,5 +1,6 @@
 import React from 'react';
-import { PartialRouteObject } from 'react-router';
+import { PartialRouteObject, Navigate } from 'react-router';
+import { LazySearch } from '../../Search';
 import { routesPaths } from './routesPaths';
 
 const stripParent = (parentPath: string, childPath: string): string => {
@@ -13,6 +14,10 @@ const stripParent = (parentPath: string, childPath: string): string => {
 export const routesComponents: PartialRouteObject[] = [
   {
     path: routesPaths.INDEX,
-    element: <div>dashbord</div>,
+    element: <Navigate to={routesPaths.SEARCH} />,
+  },
+  {
+    path: stripParent(routesPaths.INDEX, routesPaths.SEARCH),
+    element: <LazySearch />,
   },
 ];
