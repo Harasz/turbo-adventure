@@ -1,11 +1,13 @@
-import React, { FC, useState } from 'react';
-import { AutoComplete } from 'antd';
+import React, { FC, useEffect, useState } from 'react';
+import { AutoComplete, Input } from 'antd';
 import { Wrapper } from './components';
 import { useAppContext } from '../App/AppContext';
-import { useQueryPlaces, PlacesResponse } from './helpers';
+import { useQueryPlaces } from './helpers';
+import { PlacesResponse } from '../../shared';
 
 export const Search: FC = () => {
-  const [, { setCoordinates }] = useAppContext();
+  const [isTyping, setIsTyping] = useState(false);
+  const [{ placeName }, { setCoordinates, setPlaceName }] = useAppContext();
   const [places, setPlaces] = useState<PlacesResponse['features']>([]);
   const fetchPlaces = useQueryPlaces();
 
@@ -20,6 +22,7 @@ export const Search: FC = () => {
   };
 
   const handleSelected = (selectedName: string) => {
+    setIsTyping(true);
     const selectedPlace = places.find(
       (place) => place.place_name === selectedName,
     );
@@ -29,7 +32,12 @@ export const Search: FC = () => {
     }
 
     setCoordinates(selectedPlace.geometry.coordinates);
+    setPlaceName(selectedName);
   };
+
+  useEffect(() => {
+    setIsTyping(false);
+  }, [placeName]);
 
   const options = places.map((place) => ({ value: place.place_name }));
 
@@ -40,8 +48,10 @@ export const Search: FC = () => {
         style={{ width: '100%' }}
         options={options}
         onSearch={handleSearch}
-        placeholder="Type place"
-      />
+        value={isTyping ? undefined : placeName}
+      >
+        <Input.Search size="large" placeholder="Type place" allowClear />
+      </AutoComplete>
     </Wrapper>
   );
 };

@@ -7,6 +7,8 @@ import { AppContextProvider } from './AppContext';
 import 'normalize.css';
 import 'antd/dist/antd.css';
 
+import { LazyMap } from '../Map';
+
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: Infinity } },
 });
@@ -18,7 +20,10 @@ export const App: FC = () => {
     <AppContextProvider>
       <QueryClientProvider client={queryClient}>
         <Layout>
-          <Suspense fallback="Loading...">{element}</Suspense>
+          <Suspense fallback="Loading...">
+            {element}
+            <LazyMap />
+          </Suspense>
         </Layout>
       </QueryClientProvider>
     </AppContextProvider>
