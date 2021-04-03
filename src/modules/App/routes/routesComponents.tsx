@@ -20,4 +20,9 @@ export const routesComponents: PartialRouteObject[] = [
     path: stripParent(routesPaths.INDEX, routesPaths.SEARCH),
     element: <LazySearch />,
   },
+  {
+    // 404 page
+    path: '*',
+    element: <Navigate to={routesPaths.SEARCH} />,
+  },
 ];
