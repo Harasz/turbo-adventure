@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { fetchImage } from '../../../shared';
-import { useAppContext } from '../AppContext';
+import { fetchImage } from '../../shared';
+import { useAppContext } from '../App/AppContext';
 import { Image } from './components';
 
 export const EarthImage: FC = () => {

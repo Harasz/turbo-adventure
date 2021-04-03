@@ -10,7 +10,7 @@ import 'antd/dist/antd.css';
 
 // Components
 import { LazyMap } from '../Map';
-import { LazyEarthImage } from './EarthImage';
+import { LazyEarthImage } from '../EarthImage';
 import { ErrorBoundary } from '../../shared/components/ErrorBoundary';
 
 const queryClient = new QueryClient({

@@ -7,4 +7,8 @@ export const Wrapper = styled(Content)`
   padding: 16px;
   max-width: 500px;
   width: 100%;
+
+  @media (max-width: 1120px) {
+    max-width: unset;
+  }
 `;

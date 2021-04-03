@@ -8,6 +8,15 @@ export const Wrapper = styled(Layout)`
 
   width: 100vw;
   height: 100vh;
+
+  @media (max-width: 1120px) {
+    height: auto;
+    padding: 32px 0;
+  }
+
+  @media (max-width: 650px) {
+    padding: 32px 16px;
+  }
 `;
 
 export const LayoutGrid = styled.div`
@@ -18,6 +27,19 @@ export const LayoutGrid = styled.div`
   grid-template-areas:
     'image search'
     'image map';
+
+  @media (max-width: 1120px) {
+    grid-template-columns: minmax(auto, 572px);
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      'search'
+      'map'
+      'image';
+  }
+
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+  }
 
   *:nth-child(1) {
     grid-area: search;

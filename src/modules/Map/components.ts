@@ -8,4 +8,8 @@ export const Wrapper = styled(Content)`
   max-width: 500px;
   height: 500px;
   width: 100%;
+
+  @media (max-width: 1120px) {
+    max-width: unset;
+  }
 `;
